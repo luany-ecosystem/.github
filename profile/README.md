@@ -1,6 +1,6 @@
 # Luany
 
-**A PHP framework built like a compiler, not a runtime interpreter — with an explicit request lifecycle and an AST-based template engine.**
+**A PHP framework with an explicit request lifecycle and a compiled template engine — no hidden magic.**
 
 Designed for developers who value predictability, performance, and clean architecture, Luany removes hidden magic and embraces a transparent, compiler-first approach to building modern web applications.
 
@@ -12,9 +12,9 @@ Most PHP frameworks rely heavily on runtime interpretation, string parsing, and 
 
 Luany takes a different path:
 
-- **Compiler-first architecture** — templates are parsed into AST and compiled into optimized PHP
+- **Compiled templates** — LTE parses `.lte` files with a hand-written scanner and compiles them to cached PHP
 - **Explicit request lifecycle** — every step from request to response is visible and controllable
-- **Zero regex templating** — no fragile parsing, no hidden edge cases
+- **Secure by default** — escaped output, CSRF protection, closed mass assignment, validated SQL identifiers
 - **Full CRUD in one command** — `luany make:feature Product name:string price:decimal` generates model, controller, migration, 4 views and routes
 - **Zero-proxy live reload** — LDE connects browser directly to PHP; WebSocket carries only reload signals
 - **Clean MVC foundation** — structured, predictable, and easy to scale
@@ -34,12 +34,10 @@ Instead of interpreting templates and logic at runtime, Luany compiles them ahea
 
 | Feature | Traditional Frameworks | Luany |
 |--------|------------------------|------|
-| Template Engine | Regex / runtime parsing | AST + compilation |
 | Request Lifecycle | Partially hidden | Fully explicit |
 | CRUD Scaffolding | Multiple commands | One command, full feature |
 | Live Reload | Proxy-based (BrowserSync) | Zero-proxy (LDE — WebSocket signals only) |
 | Architecture | Convention + magic | Explicit + predictable |
-| Performance | Runtime overhead | Precompiled views |
 
 ---
 
@@ -47,17 +45,17 @@ Instead of interpreting templates and logic at runtime, Luany compiles them ahea
 
 | Package | Description | Version |
 |---------|-------------|---------|
-| [luany/core](https://github.com/luany-ecosystem/luany-core) | HTTP Request/Response, Router, Middleware Pipeline | v1.0.0 |
-| [luany/database](https://github.com/luany-ecosystem/luany-database) | PDO Connection, Query Builder, Active Record ORM, Migrations | v1.0.0 |
-| [luany/framework](https://github.com/luany-ecosystem/luany-framework) | Application Container, Kernel, Service Providers, i18n | v1.0.0 |
-| [luany/lte](https://github.com/luany-ecosystem/luany-lte) | AST-compiled template engine (`.lte` files) | v1.0.0 |
-| [luany/cli](https://github.com/luany-ecosystem/luany-cli) | Command-line tool, scaffolding, migrations, LDE | v1.0.2 |
-| [luany/luany](https://github.com/luany-ecosystem/luany) | Ready-to-use application skeleton | v1.1.0 |
+| [luany/core](https://github.com/luany-ecosystem/luany-core) | HTTP Request/Response, Router, Middleware Pipeline | [![v](https://img.shields.io/packagist/v/luany/core)](https://packagist.org/packages/luany/core) |
+| [luany/database](https://github.com/luany-ecosystem/luany-database) | PDO Connection, Query Builder, Active Record ORM, Migrations | [![v](https://img.shields.io/packagist/v/luany/database)](https://packagist.org/packages/luany/database) |
+| [luany/framework](https://github.com/luany-ecosystem/luany-framework) | Application Container, Kernel, Service Providers, i18n | [![v](https://img.shields.io/packagist/v/luany/framework)](https://packagist.org/packages/luany/framework) |
+| [luany/lte](https://github.com/luany-ecosystem/luany-lte) | Compiled template engine (`.lte` files) | [![v](https://img.shields.io/packagist/v/luany/lte)](https://packagist.org/packages/luany/lte) |
+| [luany/cli](https://github.com/luany-ecosystem/luany-cli) | Command-line tool, scaffolding, migrations, LDE | [![v](https://img.shields.io/packagist/v/luany/cli)](https://packagist.org/packages/luany/cli) |
+| [luany/luany](https://github.com/luany-ecosystem/luany) | Ready-to-use application skeleton | [![v](https://img.shields.io/packagist/v/luany/luany)](https://packagist.org/packages/luany/luany) |
 
 ### Tooling
 
 - **[LTE for VS Code](https://github.com/luany-ecosystem/luany-lte-vscode)** — Syntax highlighting and tooling support for `.lte` template files.
-- **[Benchmarks](https://github.com/luany-ecosystem/luany-benchmarks)** — Reproducible performance benchmarks and comparisons.
+- **Benchmarks** and a **Starter kit** (auth, dashboard) are planned — not yet published.
 
 ---
 
@@ -125,7 +123,7 @@ luany/luany (skeleton)
 ## Philosophy
 
 - Performance-first architecture with zero magic
-- AST-driven templating — no regex parsing
+- Compiled templating with escaped output by default
 - Explicit request lifecycle with clear middleware pipeline
 - Full CRUD scaffolding — from zero to running feature in seconds
 - Zero-proxy live reload — no BrowserSync loops, no session corruption
